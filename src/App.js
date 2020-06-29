@@ -5,9 +5,15 @@ import Card from './Card'
 
 function App() {
   return (
+    <div className='board'>
+      <Card open={true}/>
+      <Card open={false}/>
+      <Card open={false}/>
+      <Card open={true}/>
+    </div>
+/*
     <div className="App">
       <header className="App-header">
-        <Card />
         <img src={logo} className="App-logo" alt="logo" />
         <p>
           Edit <code>src/App.js</code> and save to reload.
@@ -22,6 +28,7 @@ function App() {
         </a>
       </header>
     </div>
+*/
   );
 }
 
