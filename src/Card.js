@@ -3,23 +3,13 @@ import React from 'react';
 class Card extends React.Component {
   constructor (props) {
     super(props)
-    this.state = {
-      open: this.props.open
-    }
-  }
-  
-  handleClick () {
-    console.log('clicked');
-    this.setState({
-      open: !this.state.open
-    });
   }
 
   render() {
-    if (this.state.open) {
+    if (this.props.open) {
       return (
         <div className="card"
-             onClick={() => this.handleClick()}>
+             onClick={() => this.props.onClick()}>
         open card
         </div>
       )
@@ -27,7 +17,7 @@ class Card extends React.Component {
   
     return (
       <div className="card"
-           onClick={() => this.handleClick()}>
+           onClick={() => this.props.onClick()}>
         closed card
       </div>
     )
