@@ -20,13 +20,13 @@ class App extends React.Component {
   }
 
   render() {
+    let cardList = this.state.cards.map((isOpen, index) => {
+      return <Card id={index} open={isOpen} onClick={(id) => this.handleClick(id)}/>;
+    });
 
     return (
       <div className='board'>
-        <Card open={this.state.cards[0]} onClick={() => this.handleClick(0)}/>
-        <Card open={this.state.cards[1]} onClick={() => this.handleClick(1)}/>
-        <Card open={this.state.cards[2]} onClick={() => this.handleClick(2)}/>
-        <Card open={this.state.cards[3]} onClick={() => this.handleClick(3)}/>
+        {cardList}
       </div>
     );
   }

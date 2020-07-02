@@ -9,7 +9,7 @@ class Card extends React.Component {
     if (this.props.open) {
       return (
         <div className="card"
-             onClick={() => this.props.onClick()}>
+             onClick={() => this.props.onClick(this.props.id)}>
         open card
         </div>
       )
@@ -17,7 +17,7 @@ class Card extends React.Component {
   
     return (
       <div className="card"
-           onClick={() => this.props.onClick()}>
+           onClick={() => this.props.onClick(this.props.id)}>
         closed card
       </div>
     )
