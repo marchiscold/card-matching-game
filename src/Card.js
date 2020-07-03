@@ -9,6 +9,7 @@ class Card extends React.Component {
     if (this.props.open) {
       return (
         <div className="card"
+             style={{backgroundColor: 'rebeccapurple'}}
              onClick={() => this.props.onClick(this.props.id)}>
         open card
         </div>
