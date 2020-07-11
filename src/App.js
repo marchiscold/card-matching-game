@@ -6,7 +6,7 @@ import Card from './Card'
 class App extends React.Component {
   constructor (props) {
     super(props)
-    const CARDS_AMOUNT = 2;
+    const CARDS_AMOUNT = 4;
     const cards = this.shuffle(this.generateCards(CARDS_AMOUNT));
     this.state = {
       cards: cards
@@ -16,10 +16,12 @@ class App extends React.Component {
   
   generateCards (num) {
     let cards = [];
+    let colors = ['rebeccapurple', 'goldenrod', 'palegreen', 'lightcoral'];
     for (let i = 0; i < num; i++) {
       let card = {
-        isOpen: Math.random() > 0.5,
-        id: i
+        isOpen: false,
+        color: colors[i],
+        id: colors[i],
       };
       cards.push(card);
       cards.push({...card});
@@ -45,6 +47,7 @@ class App extends React.Component {
       return <Card key={index} 
                    id={index} 
                    open={card.isOpen} 
+                   color={card.color}
                    onClick={this.handleClick}/>;
     });
 
