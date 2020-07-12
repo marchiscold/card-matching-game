@@ -10,7 +10,7 @@ class App extends React.Component {
     const cards = this.shuffle(this.generateCards(CARDS_AMOUNT));
     this.state = {
       cards: cards,
-      openCardsIds: [],
+      openCards: [],
       matched: 0,
     };
     this.handleClick = this.handleClick.bind(this);
@@ -39,28 +39,36 @@ class App extends React.Component {
   
   handleClick(cardNum) {
     let newCards = [...this.state.cards];
-    let openCardsIds = this.state.openCardsIds;
+    let openCards = this.state.openCards;
 
     if (!newCards[cardNum].isOpen) {
       newCards[cardNum].isOpen = true;
-      openCardsIds.push(newCards[cardNum].id);
+      openCards.push(newCards[cardNum]);
     }
 
-    if (openCardsIds.length > 2) {
-      let firstTwoIds = openCardsIds.slice(0, 2);
+    if (openCards.length == 2 && openCards[0].color == openCards[1].color) {
+      newCards.map(card => {
+        if (card.color == openCards[0].color) {
+          card.isMatched = true;
+        }
+      });
+    }
+
+    if (openCards.length > 2) {
+      let firstTwoIds = openCards.slice(0, 2).map(card => card.id);
       newCards = newCards.map(card => {
-        if (firstTwoIds.includes(card.id)) {
+        if (firstTwoIds.includes(card.id) && !card.isMatched) {
           card.isOpen = false;
           return card;
         }
         return card;
       });
-      openCardsIds = openCardsIds.slice(2);
+      openCards = openCards.slice(2);
     }
 
     this.setState({
       cards: newCards,
-      openCardsIds: openCardsIds,
+      openCards: openCards,
     });
   }
 
