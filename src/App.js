@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import Card from './Card'
 import MatchedCards from './MatchedCards';
+import Timer from './Timer';
 
 class App extends React.Component {
   constructor (props) {
@@ -13,8 +14,15 @@ class App extends React.Component {
       cards: cards,
       openCards: [],
       matched: 0,
+      timer: 0,
     };
     this.handleClick = this.handleClick.bind(this);
+  }
+
+  componentDidMount() {
+    setInterval(() => {
+      this.setState((state) => ({timer: state.timer + 1}))
+    }, 1000);
   }
   
   generateCards (cardAmount) {
@@ -94,6 +102,7 @@ class App extends React.Component {
                 matched={this.state.matched}
                 total={this.state.cards.length}
               />
+              <Timer seconds={this.state.timer} />
             </div>
             <div className="board">{cardList}</div>
           </div>
