@@ -2,6 +2,7 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 import Card from './Card'
+import MatchedCards from './MatchedCards';
 
 class App extends React.Component {
   constructor (props) {
@@ -40,6 +41,7 @@ class App extends React.Component {
   handleClick(cardNum) {
     let newCards = [...this.state.cards];
     let openCards = this.state.openCards;
+    let matchedCards = this.state.matched;
 
     if (!newCards[cardNum].isOpen) {
       newCards[cardNum].isOpen = true;
@@ -52,6 +54,7 @@ class App extends React.Component {
           card.isMatched = true;
         }
       });
+      matchedCards += 2;
     }
 
     if (openCards.length > 2) {
@@ -69,6 +72,7 @@ class App extends React.Component {
     this.setState({
       cards: newCards,
       openCards: openCards,
+      matched: matchedCards,
     });
   }
 
@@ -82,9 +86,19 @@ class App extends React.Component {
     });
 
     return (
-      <div className='board'>
-        {cardList}
-      </div>
+      <React.Fragment>
+        <div className="wrapper">
+          <div className="game-wrapper">
+            <div className="info">
+              <MatchedCards
+                matched={this.state.matched}
+                total={this.state.cards.length}
+              />
+            </div>
+            <div className="board">{cardList}</div>
+          </div>
+        </div>
+      </React.Fragment>
     );
   }
 }
