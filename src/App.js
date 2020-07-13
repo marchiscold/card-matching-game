@@ -47,27 +47,28 @@ class App extends React.Component {
   } 
   
   handleClick(cardNum) {
-    let newCards = [...this.state.cards];
+    let cards = [...this.state.cards];
     let openCards = this.state.openCards;
     let matchedCards = this.state.matched;
 
-    if (!newCards[cardNum].isOpen) {
-      newCards[cardNum].isOpen = true;
-      openCards.push(newCards[cardNum]);
+    if (!cards[cardNum].isOpen) {
+      cards[cardNum].isOpen = true;
+      openCards.push(cards[cardNum]);
     }
 
     if (openCards.length == 2 && openCards[0].color == openCards[1].color) {
-      newCards.map(card => {
+      cards.map(card => {
         if (card.color == openCards[0].color) {
           card.isMatched = true;
         }
       });
       matchedCards += 2;
+      openCards = [];
     }
 
     if (openCards.length > 2) {
       let firstTwoIds = openCards.slice(0, 2).map(card => card.id);
-      newCards = newCards.map(card => {
+      cards = cards.map(card => {
         if (firstTwoIds.includes(card.id) && !card.isMatched) {
           card.isOpen = false;
           return card;
@@ -78,7 +79,7 @@ class App extends React.Component {
     }
 
     this.setState({
-      cards: newCards,
+      cards: cards,
       openCards: openCards,
       matched: matchedCards,
     });
