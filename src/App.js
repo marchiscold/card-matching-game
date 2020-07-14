@@ -1,9 +1,7 @@
 import React from 'react';
 import './App.css';
-import Card from './Card'
-import MatchedCards from './MatchedCards';
-import Timer from './Timer';
 import GameBoard from './GameBoard';
+import GameStart from './GameStart';
 
 class App extends React.Component {
   constructor (props) {
@@ -11,12 +9,14 @@ class App extends React.Component {
     const CARDS_AMOUNT = 4;
     const cards = this.shuffle(this.generateCards(CARDS_AMOUNT));
     this.state = {
+      gameState: 'START_SCREEN',
       cards: cards,
       openCards: [],
       matched: 0,
       timer: 0,
     };
-    this.handleClick = this.handleClick.bind(this);
+    this.handleCardClick = this.handleCardClick.bind(this);
+    this.handleGameStart = this.handleGameStart.bind(this);
   }
 
   componentDidMount() {
@@ -46,7 +46,7 @@ class App extends React.Component {
     return list;
   } 
   
-  handleClick(cardNum) {
+  handleCardClick(cardNum) {
     let cards = [...this.state.cards];
     let openCards = this.state.openCards;
     let matchedCards = this.state.matched;
@@ -85,14 +85,36 @@ class App extends React.Component {
     });
   }
 
+  handleGameStart () {
+    this.setState({
+      gameState: 'GAME_SCREEN'
+    });
+  }
+
   render() {
+    let screen;
+    switch(this.state.gameState) {
+      case 'START_SCREEN':
+        screen = <GameStart startGame={this.handleGameStart}/>;
+        break;
+      case 'GAME_SCREEN':
+        screen = (
+          <GameBoard
+            cards={this.state.cards}
+            matched={this.state.matched}
+            timer={this.state.timer}
+            onCardClick={this.handleCardClick}
+          />
+        );
+        break;
+      default: 
+        screen = <div>error screen</div>
+    }
+
     return (
-      <GameBoard
-        cards={this.state.cards}
-        matched={this.state.matched}
-        timer={this.state.timer}
-        onCardClick={this.handleClick}
-      />
+      <div className="wrapper">
+        {screen}
+      </div>
     );
   }
 }

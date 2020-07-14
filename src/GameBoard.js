@@ -13,17 +13,15 @@ function GameBoard({ matched, cards, timer, onCardClick }) {
   });
 
   return (
-    <div className="wrapper">
-      <div className="game-wrapper">
-        <div className="info">
-          <MatchedCards
-            matched={matched}
-            total={cards.length}
-          />
-          <Timer seconds={timer} />
-        </div>
-        <div className="board">{cardList}</div>
+    <div className="game-wrapper">
+      <div className="info">
+        <MatchedCards
+          matched={matched}
+          total={cards.length}
+        />
+        <Timer seconds={timer} />
       </div>
+      <div className="board">{cardList}</div>
     </div>
   );
 }
