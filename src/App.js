@@ -1,9 +1,9 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 import Card from './Card'
 import MatchedCards from './MatchedCards';
 import Timer from './Timer';
+import GameBoard from './GameBoard';
 
 class App extends React.Component {
   constructor (props) {
@@ -86,29 +86,13 @@ class App extends React.Component {
   }
 
   render() {
-    let cardList = this.state.cards.map((card, index) => {
-      return <Card key={index} 
-                   id={index} 
-                   open={card.isOpen} 
-                   color={card.color}
-                   onClick={this.handleClick}/>;
-    });
-
     return (
-      <React.Fragment>
-        <div className="wrapper">
-          <div className="game-wrapper">
-            <div className="info">
-              <MatchedCards
-                matched={this.state.matched}
-                total={this.state.cards.length}
-              />
-              <Timer seconds={this.state.timer} />
-            </div>
-            <div className="board">{cardList}</div>
-          </div>
-        </div>
-      </React.Fragment>
+      <GameBoard
+        cards={this.state.cards}
+        matched={this.state.matched}
+        timer={this.state.timer}
+        onCardClick={this.handleClick}
+      />
     );
   }
 }

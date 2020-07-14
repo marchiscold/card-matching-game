@@ -6,6 +6,10 @@ function Timer(props) {
   let min = pad(minutes <= 59 ? minutes : 59); 
   let sec = pad(seconds % 60);
 
+  if (props.seconds > 3599) {
+    sec = 59;
+  }
+
   function pad (num) {
     return num < 10 ? '0' + num : '' + num;
   }
