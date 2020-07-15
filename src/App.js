@@ -44,11 +44,15 @@ class App extends React.Component {
 
   shuffle(list) {
     let tempList = [...list];
+    //TODO for testing
+    return tempList;
+
     for (let i = tempList.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
       [tempList[i], tempList[j]] = [tempList[j], tempList[i]];
     }
-    return tempList;
+
+    // return tempList;
   } 
   
   handleCardClick(cardNum) {
