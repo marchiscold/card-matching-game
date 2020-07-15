@@ -12,8 +12,8 @@ class App extends React.Component {
     this.state = {
       gameState: 'START_SCREEN',
       cards: cards,
-      openCards: [],
       timer: 0,
+      isBlocked: false,
     };
     this.handleCardClick = this.handleCardClick.bind(this);
     this.handleGameStart = this.handleGameStart.bind(this);
@@ -47,39 +47,45 @@ class App extends React.Component {
   } 
   
   handleCardClick(cardNum) {
-    let cards = [...this.state.cards];
-    let openCards = this.state.openCards;
-
-    if (!cards[cardNum].isOpen) {
-      cards[cardNum].isOpen = true;
-      openCards.push(cards[cardNum]);
+    if (this.state.isBlocked) {
+      return;
     }
+
+    let cards = JSON.parse(JSON.stringify(this.state.cards));
+    cards[cardNum].isOpen = true;
+    let openCards = cards.filter(card => card.isOpen);
 
     if (openCards.length == 2 && openCards[0].color == openCards[1].color) {
-      cards.map(card => {
-        if (card.color == openCards[0].color) {
-          card.isMatched = true;
-        }
-      });
-      openCards = [];
-    }
+      openCards.forEach((card) => {
+        card.isMatched = true;
+        card.isOpen = false;
+      })
+    } else if (openCards.length == 2) {
+      setTimeout(() => {
+        this.closeOpenCards();
+        this.setState({
+          isBlocked: false
+        });
+      }, 700);
 
-    if (openCards.length > 2) {
-      let firstTwoIds = openCards.slice(0, 2).map(card => card.id);
-      cards = cards.map(card => {
-        if (firstTwoIds.includes(card.id) && !card.isMatched) {
-          card.isOpen = false;
-          return card;
-        }
-        return card;
+      this.setState({
+        isBlocked: true,
+        cards: cards,
       });
-      openCards = openCards.slice(2);
+      return;
     }
 
     this.setState({
       cards: cards,
-      openCards: openCards,
     });
+  }
+
+  closeOpenCards() {
+    let cards = [...this.state.cards];
+    cards = cards.map((card) => {
+      card.isOpen = false;
+      return card;
+    })
   }
 
   handleGameStart () {

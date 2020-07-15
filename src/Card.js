@@ -1,28 +1,23 @@
 import React from 'react';
 
-class Card extends React.Component {
-  constructor (props) {
-    super(props)
-  }
+function Card({ id, card, onClick }) {
 
-  render() {
-    if (this.props.open) {
-      return (
-        <div className="card"
-             style={{backgroundColor: this.props.color}}
-             onClick={() => this.props.onClick(this.props.id)}>
-        open card
-        </div>
-      )
-    }
-  
+  if (card.isOpen || card.isMatched) {
     return (
       <div className="card"
-           onClick={() => this.props.onClick(this.props.id)}>
-        closed card
+            style={{backgroundColor: card.color}}
+            onClick={() => onClick(id)}>
+      open card
       </div>
     )
   }
+
+  return (
+    <div className="card"
+          onClick={() => onClick(id)}>
+      closed card
+    </div>
+  )
 }
 
 export default Card;

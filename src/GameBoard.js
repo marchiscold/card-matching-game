@@ -11,8 +11,10 @@ function GameBoard({ cards, timer, onCardClick }) {
   let cardList = cards.map((card, index) => {
     return <Card key={index} 
                  id={index} 
-                 open={card.isOpen} 
+                 isOpen={card.isOpen} 
+                 isMatched={card.isMatched}
                  color={card.color}
+                 card={card}
                  onClick={onCardClick}/>;
   });
 
