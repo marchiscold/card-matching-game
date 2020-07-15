@@ -1,23 +1,25 @@
 import React from 'react';
+import classnames from 'classnames';
 
 function Card({ id, card, onClick }) {
+  let style = {};
+  let classname = classnames({
+    card: true,
+    'card--matched': card.isMatched
+  });
 
-  if (card.isOpen || card.isMatched) {
-    return (
-      <div className="card"
-            style={{backgroundColor: card.color}}
-            onClick={() => onClick(id)}>
-      open card
-      </div>
-    )
+  if (card.isMatched || card.isOpen) {
+    style.backgroundColor = card.color;
   }
 
   return (
-    <div className="card"
-          onClick={() => onClick(id)}>
-      closed card
+    <div
+      className={classname}
+      style={style}
+      onClick={() => onClick(id)}
+    >
     </div>
-  )
+  );
 }
 
 export default Card;

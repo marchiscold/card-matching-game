@@ -78,17 +78,22 @@ body {
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  width: 150px;
+  width: 160px;
   height: 250px;
   margin: 10px 10px;
   text-align: center;
   background-color: #333;
   color: #fff;
   font-size: 23px;
-  transition: opacity 0.3s linear;
+  transition: opacity 0.5s linear 0.3s;
+}
+
+.card--closed {
+  background-color: #fff;
 }
 
 .card--matched {
+  cursor: initial;
   opacity: 0;
 }
 
