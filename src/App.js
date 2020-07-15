@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 import GameBoard from './GameBoard';
 import GameStart from './GameStart';
+import GameEnd from './GameEnd';
 
 class App extends React.Component {
   constructor (props) {
@@ -12,7 +13,6 @@ class App extends React.Component {
       gameState: 'START_SCREEN',
       cards: cards,
       openCards: [],
-      matched: 0,
       timer: 0,
     };
     this.handleCardClick = this.handleCardClick.bind(this);
@@ -49,7 +49,6 @@ class App extends React.Component {
   handleCardClick(cardNum) {
     let cards = [...this.state.cards];
     let openCards = this.state.openCards;
-    let matchedCards = this.state.matched;
 
     if (!cards[cardNum].isOpen) {
       cards[cardNum].isOpen = true;
@@ -62,7 +61,6 @@ class App extends React.Component {
           card.isMatched = true;
         }
       });
-      matchedCards += 2;
       openCards = [];
     }
 
@@ -81,7 +79,6 @@ class App extends React.Component {
     this.setState({
       cards: cards,
       openCards: openCards,
-      matched: matchedCards,
     });
   }
 
@@ -101,11 +98,13 @@ class App extends React.Component {
         screen = (
           <GameBoard
             cards={this.state.cards}
-            matched={this.state.matched}
             timer={this.state.timer}
             onCardClick={this.handleCardClick}
           />
         );
+        break;
+      case 'GAME_OVER_SCREEN':
+        screen = <GameEnd />;
         break;
       default: 
         screen = <div>error screen</div>
