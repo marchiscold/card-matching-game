@@ -4,10 +4,14 @@ import GameBoard from './GameBoard';
 import GameStart from './GameStart';
 import GameEnd from './GameEnd';
 
+const CARDS_AMOUNT = 4;
+
 class App extends React.Component {
   constructor (props) {
     super(props)
-    const CARDS_AMOUNT = 4;
+    this.handleCardClick = this.handleCardClick.bind(this);
+    this.handleGameStart = this.handleGameStart.bind(this);
+    this.handleStartOver = this.handleStartOver.bind(this);
     const cards = this.shuffle(this.generateCards(CARDS_AMOUNT));
     this.state = {
       gameState: 'START_SCREEN',
@@ -15,8 +19,16 @@ class App extends React.Component {
       timer: 0,
       isBlocked: false,
     };
-    this.handleCardClick = this.handleCardClick.bind(this);
-    this.handleGameStart = this.handleGameStart.bind(this);
+  }
+
+  resetGameState() {
+    const cards = this.shuffle(this.generateCards(CARDS_AMOUNT));
+    this.setState({
+      gameState: 'START_SCREEN',
+      cards: cards,
+      timer: 0,
+      isBlocked: false,
+    });
   }
 
   componentDidMount() {
@@ -82,6 +94,17 @@ class App extends React.Component {
         cards: cards,
       });
       return;
+    } 
+
+    let matchedCardsAmount = cards.reduce((matched, card) => {
+      return matched + (card.isMatched ? 1 : 0);
+    }, 0);
+    if (matchedCardsAmount == cards.length) {
+      this.setState({
+        gameState: 'GAME_OVER_SCREEN',
+        cards: cards,
+      });
+      return;
     }
 
     this.setState({
@@ -97,10 +120,14 @@ class App extends React.Component {
     })
   }
 
-  handleGameStart () {
+  handleGameStart() {
     this.setState({
       gameState: 'GAME_SCREEN'
     });
+  }
+
+  handleStartOver() {
+    this.resetGameState();
   }
 
   render() {
@@ -119,7 +146,7 @@ class App extends React.Component {
         );
         break;
       case 'GAME_OVER_SCREEN':
-        screen = <GameEnd />;
+        screen = <GameEnd onStartOver={this.handleStartOver} />;
         break;
       default: 
         screen = <div>error screen</div>

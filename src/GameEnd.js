@@ -1,9 +1,9 @@
 import React from 'react'
 
-function GameEnd() {
+function GameEnd({ onStartOver }) {
   return (
-    <div>
-      you've won!
+    <div className='end-screen'>
+      <button className='end-screen__button' onClick={onStartOver}>start over</button>
     </div>
   )
 }

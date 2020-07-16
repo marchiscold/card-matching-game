@@ -44,6 +44,26 @@ body {
   padding: 10px 15px;
 }
 
+.end-screen {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 800px;
+  height: 500px;
+  background-color: #fff;
+}
+
+.end-screen__button {
+  text-transform: uppercase;
+  cursor: pointer;
+  border: none;
+  background-color: #000;
+  color: #fff;
+  font-size: 25px;
+  letter-spacing: 2px;
+  padding: 10px 15px;
+}
+
 .game-wrapper {
   display: flex;
   flex-direction: column;
