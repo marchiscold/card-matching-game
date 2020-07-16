@@ -97,7 +97,7 @@ class App extends React.Component {
     } 
 
     let matchedCardsAmount = cards.reduce((matched, card) => {
-      return matched + (card.isMatched ? 1 : 0);
+      return card.isMatched ? matched + 1 : matched;
     }, 0);
     if (matchedCardsAmount == cards.length) {
       this.setState({
@@ -140,6 +140,7 @@ class App extends React.Component {
         screen = (
           <GameBoard
             cards={this.state.cards}
+            rows={2}
             timer={this.state.timer}
             onCardClick={this.handleCardClick}
           />
