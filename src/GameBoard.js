@@ -29,7 +29,7 @@ function GameBoard({ cards, rows, timer, onCardClick }) {
     <div className="game-wrapper">
       <div className="info">
         <MatchedCards matched={matchedAmount} total={cards.length} />
-        <Timer seconds={timer} />
+        <Timer time={timer} />
       </div>
       <div className="board">{cardRows}</div>
     </div>

@@ -30,12 +30,6 @@ class App extends React.Component {
       isBlocked: false,
     });
   }
-
-  componentDidMount() {
-    setInterval(() => {
-      this.setState((state) => ({timer: state.timer + 1}))
-    }, 1000);
-  }
   
   generateCards (cardAmount) {
     let cards = [];
@@ -104,6 +98,7 @@ class App extends React.Component {
         gameState: 'GAME_OVER_SCREEN',
         cards: cards,
       });
+      clearInterval(this.timerId);
       return;
     }
 
@@ -124,6 +119,10 @@ class App extends React.Component {
     this.setState({
       gameState: 'GAME_SCREEN'
     });
+
+    this.timerId = setInterval(() => {
+      this.setState((state) => ({timer: state.timer + 1}))
+    }, 1000);
   }
 
   handleStartOver() {
