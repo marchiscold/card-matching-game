@@ -1,9 +1,14 @@
 import React from 'react'
+import classnames from 'classnames'
 
-function GameStart({ startGame }) {
+function GameStart({ onGameStart, fadeout, fadein }) {
+  const classname = classnames("start-screen", {
+    "start-screen--fadeout": fadeout,
+    "start-screen--fadein": fadein,
+  });
   return (
-    <div className='start-screen'>
-      <button className='start-screen__button' onClick={startGame}>start</button>
+    <div className={classname}>
+      <button className='start-screen__button' onClick={onGameStart}>start</button>
     </div>
   )
 }

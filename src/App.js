@@ -18,6 +18,12 @@ class App extends React.Component {
       cards: cards,
       timer: 0,
       isBlocked: false,
+      startScreenFadeOut: false,
+      startScreenFadeIn: false,
+      gameScreenFadeOut: false,
+      gameScreenFadeIn: false,
+      endScreenFadeOut: false,
+      endScreenFadeIn: false,
     };
   }
 
@@ -94,9 +100,19 @@ class App extends React.Component {
       return card.isMatched ? matched + 1 : matched;
     }, 0);
     if (matchedCardsAmount == cards.length) {
+      setTimeout(() => {
+        this.setState({
+          gameScreenFadeOut: true
+        });
+      }, 800);
+      setTimeout(() => {
+        this.setState({
+          gameState: 'GAME_OVER_SCREEN',
+          gameScreenFadeOut: false
+        });
+      }, 1000);
       this.setState({
-        gameState: 'GAME_OVER_SCREEN',
-        cards: cards,
+        cards: cards
       });
       clearInterval(this.timerId);
       return;
@@ -117,8 +133,14 @@ class App extends React.Component {
 
   handleGameStart() {
     this.setState({
-      gameState: 'GAME_SCREEN'
+      startScreenFadeOut: true
     });
+    setTimeout(() => {
+      this.setState({
+        gameState: 'GAME_SCREEN',
+        startScreenFadeOut: false
+      });
+    }, 200)
 
     this.timerId = setInterval(() => {
       this.setState((state) => ({timer: state.timer + 1}))
@@ -126,14 +148,29 @@ class App extends React.Component {
   }
 
   handleStartOver() {
-    this.resetGameState();
+    this.setState({
+      endScreenFadeOut: true
+    });
+    setTimeout(() => {
+      this.resetGameState();
+      this.setState({
+        endScreenFadeOut: false,
+        startScreenFadeIn: true
+      });
+    }, 200);
   }
 
   render() {
     let screen;
     switch(this.state.gameState) {
       case 'START_SCREEN':
-        screen = <GameStart startGame={this.handleGameStart}/>;
+        screen = (
+          <GameStart
+            onGameStart={this.handleGameStart}
+            fadeout={this.state.startScreenFadeOut}
+            fadein={this.state.startScreenFadeIn}
+          />
+        );
         break;
       case 'GAME_SCREEN':
         screen = (
@@ -142,11 +179,17 @@ class App extends React.Component {
             rows={2}
             timer={this.state.timer}
             onCardClick={this.handleCardClick}
+            fadeout={this.state.gameScreenFadeOut}
           />
         );
         break;
       case 'GAME_OVER_SCREEN':
-        screen = <GameEnd onStartOver={this.handleStartOver} />;
+        screen = (
+          <GameEnd
+            onStartOver={this.handleStartOver}
+            fadeout={this.state.endScreenFadeOut}
+          />
+        );
         break;
       default: 
         screen = <div>error screen</div>

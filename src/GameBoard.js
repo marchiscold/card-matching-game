@@ -2,8 +2,9 @@ import React from 'react';
 import Card from './Card';
 import MatchedCards from './MatchedCards';
 import Timer from './Timer';
+import classnames from 'classnames';
 
-function GameBoard({ cards, rows, timer, onCardClick }) {
+function GameBoard({ cards, rows, timer, onCardClick, fadeout }) {
   let matchedAmount = cards.reduce((acc, card) => {
     return card.isMatched ? acc + 1 : acc;
   }, 0)
@@ -25,8 +26,9 @@ function GameBoard({ cards, rows, timer, onCardClick }) {
     cardRows.push(<div key={row} className='board__row'>{cardRow}</div>);
   }
 
+  const classname = classnames('game-screen', {'game-screen--fadeout': fadeout});
   return (
-    <div className="game-wrapper">
+    <div className={classname}>
       <div className="info">
         <MatchedCards matched={matchedAmount} total={cards.length} />
         <Timer time={timer} />
