@@ -5,7 +5,8 @@ function Card({ id, card, onClick }) {
   let style = {};
   let classname = classnames({
     card: true,
-    'card--matched': card.isMatched
+    'card--matched': card.isMatched,
+    'card--open': card.isOpen
   });
 
   if (card.isMatched || card.isOpen) {
@@ -15,9 +16,10 @@ function Card({ id, card, onClick }) {
   return (
     <div
       className={classname}
-      style={style}
       onClick={() => onClick(id)}
     >
+      <div className='card__front'></div>
+      <div className='card__back' style={style}></div>
     </div>
   );
 }
