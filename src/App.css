@@ -183,7 +183,7 @@ body {
 
 .card--matched {
   cursor: initial;
-  animation: card-matched 1s ease-out forwards;
+  animation: card-matched 0.8s ease-out 0.3s forwards;
 }
 
 @keyframes card-matched {

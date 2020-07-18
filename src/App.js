@@ -21,9 +21,7 @@ class App extends React.Component {
       startScreenFadeOut: false,
       startScreenFadeIn: false,
       gameScreenFadeOut: false,
-      gameScreenFadeIn: false,
       endScreenFadeOut: false,
-      endScreenFadeIn: false,
     };
   }
 
@@ -74,12 +72,11 @@ class App extends React.Component {
 
     let cards = JSON.parse(JSON.stringify(this.state.cards));
     cards[cardNum].isOpen = true;
-    let openCards = cards.filter(card => card.isOpen);
+    let openCards = cards.filter(card => card.isOpen && !card.isMatched);
 
     if (openCards.length == 2 && openCards[0].color == openCards[1].color) {
       openCards.forEach((card) => {
         card.isMatched = true;
-        card.isOpen = false;
       })
     } else if (openCards.length == 2) {
       setTimeout(() => {
@@ -87,7 +84,7 @@ class App extends React.Component {
         this.setState({
           isBlocked: false
         });
-      }, 700);
+      }, 550);
 
       this.setState({
         isBlocked: true,
