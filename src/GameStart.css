@@ -91,15 +91,10 @@
   left: 0;
   width: 100%;
   height: 100%;
+}
+
+.mode__item.active .mode__description {
   opacity: 0;
-  transition: opacity 0.2s linear;
-}
-
-.mode__item:not(.active):hover .mode__description {
-  opacity: 1;
-}
-
-.mode__item.active {
 }
 
 .mode__item.active .mode__overlay {

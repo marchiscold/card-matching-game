@@ -12,12 +12,14 @@ class App extends React.Component {
     this.handleCardClick = this.handleCardClick.bind(this);
     this.handleGameStart = this.handleGameStart.bind(this);
     this.handleStartOver = this.handleStartOver.bind(this);
+    this.handleModeChange = this.handleModeChange.bind(this);
     const cards = this.shuffle(this.generateCards(CARDS_AMOUNT));
     this.state = {
       gameState: 'START_SCREEN',
       cards: cards,
       timer: 0,
       isBlocked: false,
+      mode: 'bugs',
       startScreenFadeOut: false,
       startScreenFadeIn: false,
       gameScreenFadeOut: false,
@@ -157,6 +159,12 @@ class App extends React.Component {
     }, 200);
   }
 
+  handleModeChange(mode) {
+    this.setState({
+      mode: mode
+    });
+  }
+
   render() {
     let screen;
     switch(this.state.gameState) {
@@ -166,6 +174,8 @@ class App extends React.Component {
             onGameStart={this.handleGameStart}
             fadeout={this.state.startScreenFadeOut}
             fadein={this.state.startScreenFadeIn}
+            mode={this.state.mode}
+            onModeChange={this.handleModeChange}
           />
         );
         break;
