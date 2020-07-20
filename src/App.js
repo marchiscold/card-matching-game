@@ -20,6 +20,7 @@ class App extends React.Component {
       timer: 0,
       isBlocked: false,
       mode: 'bugs',
+      grid: [2, 4],
       startScreenFadeOut: false,
       startScreenFadeIn: false,
       gameScreenFadeOut: false,
@@ -176,6 +177,7 @@ class App extends React.Component {
             fadein={this.state.startScreenFadeIn}
             mode={this.state.mode}
             onModeChange={this.handleModeChange}
+            grid={this.state.grid}
           />
         );
         break;
