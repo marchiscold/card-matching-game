@@ -13,6 +13,8 @@ class App extends React.Component {
     this.handleGameStart = this.handleGameStart.bind(this);
     this.handleStartOver = this.handleStartOver.bind(this);
     this.handleModeChange = this.handleModeChange.bind(this);
+    this.handleGridChange = this.handleGridChange.bind(this);
+
     const cards = this.shuffle(this.generateCards(CARDS_AMOUNT));
     this.state = {
       gameState: 'START_SCREEN',
@@ -166,6 +168,12 @@ class App extends React.Component {
     });
   }
 
+  handleGridChange(gridType) {
+    this.setState({
+      grid: gridType.split('x')
+    });
+  }
+
   render() {
     let screen;
     switch(this.state.gameState) {
@@ -178,6 +186,7 @@ class App extends React.Component {
             mode={this.state.mode}
             onModeChange={this.handleModeChange}
             grid={this.state.grid}
+            onGridChange={this.handleGridChange}
           />
         );
         break;
