@@ -4,8 +4,6 @@ import GameBoard from './GameBoard';
 import GameStart from './GameStart';
 import GameEnd from './GameEnd';
 
-const CARDS_AMOUNT = 4;
-
 class App extends React.Component {
   constructor (props) {
     super(props)
@@ -15,14 +13,15 @@ class App extends React.Component {
     this.handleModeChange = this.handleModeChange.bind(this);
     this.handleGridChange = this.handleGridChange.bind(this);
 
-    const cards = this.shuffle(this.generateCards(CARDS_AMOUNT));
+    const [rows, cols] = [2, 4];
+    const cards = this.shuffle(this.generateCards(rows*cols/2));
     this.state = {
       gameState: 'START_SCREEN',
       cards: cards,
       timer: 0,
       isBlocked: false,
       mode: 'bugs',
-      grid: [2, 4],
+      grid: [rows, cols],
       startScreenFadeOut: false,
       startScreenFadeIn: false,
       gameScreenFadeOut: false,
@@ -31,7 +30,8 @@ class App extends React.Component {
   }
 
   resetGameState() {
-    const cards = this.shuffle(this.generateCards(CARDS_AMOUNT));
+    const [rows, cols] = this.state.grid;
+    const cards = this.shuffle(this.generateCards(rows*cols/2));
     this.setState({
       gameState: 'START_SCREEN',
       cards: cards,
@@ -42,7 +42,18 @@ class App extends React.Component {
   
   generateCards (cardAmount) {
     let cards = [];
-    let colors = ['', 'rebeccapurple', 'goldenrod', 'palegreen', 'lightcoral'];
+    let colors = [
+      "",
+      "rebeccapurple",
+      "goldenrod",
+      "palegreen",
+      "lightcoral",
+      "aquamarine",
+      "darkorange",
+      "limegreen",
+      "fuchsia",
+      "olivedrab"
+    ];
     for (let i = 1; i < cardAmount + 1; i++) {
       let card = {
         isOpen: false,
@@ -67,7 +78,7 @@ class App extends React.Component {
       [tempList[i], tempList[j]] = [tempList[j], tempList[i]];
     }
 
-    // return tempList;
+    return tempList;
   } 
   
   handleCardClick(cardNum) {
@@ -169,8 +180,11 @@ class App extends React.Component {
   }
 
   handleGridChange(gridType) {
+    const [rows, cols] = gridType.split('x');
+    const cards = this.shuffle(this.generateCards(rows*cols/2));
     this.setState({
-      grid: gridType.split('x')
+      grid: [rows, cols],
+      cards: cards
     });
   }
 
@@ -194,7 +208,7 @@ class App extends React.Component {
         screen = (
           <GameBoard
             cards={this.state.cards}
-            rows={2}
+            grid={this.state.grid}
             timer={this.state.timer}
             onCardClick={this.handleCardClick}
             fadeout={this.state.gameScreenFadeOut}

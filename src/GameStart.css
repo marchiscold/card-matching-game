@@ -64,6 +64,9 @@
   background-size: cover;
   background-position: center;
   color: #fff;
+}
+
+.mode__item.active {
   box-shadow: 2px 2px 2px 0px #000;
 }
 

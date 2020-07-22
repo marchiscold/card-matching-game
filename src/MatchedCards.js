@@ -1,9 +1,13 @@
 import React from 'react'
 
-function MatchedCards(props) {
+function MatchedCards({ cards, total }) {
+  let matchedAmount = cards.reduce((acc, card) => {
+    return card.isMatched ? acc + 1 : acc;
+  }, 0)
+
   return (
     <div>
-      Matched: {props.matched}/{props.total}
+      Matched: {matchedAmount}/{total}
     </div>
   )
 }
