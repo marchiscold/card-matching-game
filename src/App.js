@@ -41,8 +41,10 @@ class App extends React.Component {
   }
   
   generateCards (cardAmount) {
-    let cards = [];
-    let colors = [
+    const cards = [];
+    //const colors = colorList;
+    //const images = this.state.mode + 'List';
+    const colors = [
       "",
       "rebeccapurple",
       "goldenrod",
@@ -54,11 +56,13 @@ class App extends React.Component {
       "fuchsia",
       "olivedrab"
     ];
+
     for (let i = 1; i < cardAmount + 1; i++) {
       let card = {
         isOpen: false,
         isMatched: false,
         color: colors[i],
+        img: '',
         id: i,
       };
       cards.push(card);
