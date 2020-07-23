@@ -21,7 +21,7 @@ function GameStart({
   return (
     <div className={startClass}>
       <h1 className="start-screen__name">Pair Matcher</h1>
-      <Mode mode={mode} onModeChange={onModeChange} />
+      <Mode activeMode={mode} onModeChange={onModeChange} />
       <Grid grid={grid} onGridChange={onGridChange} />
       <button className="start-screen__button" onClick={onGameStart}>
         play

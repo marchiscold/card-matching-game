@@ -4,17 +4,17 @@ import fishLogo from './images/fish_logo.jpg';
 import classnames from 'classnames';
 
 
-function Mode({ mode, onModeChange }) {
+function Mode({ activeMode, onModeChange }) {
   const modes = [
     {
       id: "bugs",
-      isActive: mode === "bugs",
+      isActive: activeMode === "bugs",
       desc: "bugs",
       logo: bugLogo,
     },
     {
       id: "aquatic",
-      isActive: mode === "aquatic",
+      isActive: activeMode === "aquatic",
       desc: "aquatic",
       logo: fishLogo,   
     },

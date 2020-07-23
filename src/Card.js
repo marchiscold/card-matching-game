@@ -11,6 +11,7 @@ function Card({ id, card, onClick }) {
   let style = {};
   if (card.isMatched || card.isOpen) {
     style.backgroundColor = card.color;
+    style.backgroundImage = `url(${card.img})`;
   }
 
   return (

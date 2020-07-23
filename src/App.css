@@ -127,6 +127,7 @@ body {
 
 .card__back {
   transform: rotateY(180deg);
+  background-size: cover;
 }
 
 .card {
@@ -158,14 +159,14 @@ body {
 
 @keyframes card-matched {
   0% {
-    transform: scale(1);
+    transform: scale(1) rotateY(180deg);
   }
   30% {
     opacity: 1;
-    transform: scale(1.05);
+    transform: scale(1.05) rotateY(180deg);
   }
   100% {
-    transform: scale(0.9);
+    transform: scale(0.9) rotateY(180deg);
     opacity: 0;
   }
 }

@@ -8,12 +8,12 @@ function Grid({ grid, onGridChange }) {
     { isActive: gridType === "4x4", type: "4x4" },
   ];
 
-  const gridList = grids.map((grid) => {
+  const gridList = grids.map((grid, index) => {
     const gridClass = classnames("grid-options__item", {
       active: grid.isActive,
     });
     return (
-      <div className={gridClass} onClick={() => onGridChange(grid.type)}>
+      <div key={index} className={gridClass} onClick={() => onGridChange(grid.type)}>
         {grid.type}
       </div>
     );

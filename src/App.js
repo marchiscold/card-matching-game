@@ -14,7 +14,8 @@ class App extends React.Component {
     this.handleGridChange = this.handleGridChange.bind(this);
 
     const [rows, cols] = [2, 4];
-    const cards = this.shuffle(this.generateCards(rows*cols/2));
+    const mode = 'bugs';
+    const cards = this.shuffle(this.generateCards(rows*cols/2, mode));
     this.state = {
       gameState: 'START_SCREEN',
       cards: cards,
@@ -29,9 +30,17 @@ class App extends React.Component {
     };
   }
 
+  componentDidMount() {
+    const img = require('./images/bugs/1.jpg');
+    const img2 = require('./images/bugs/1.jpg');
+    console.log(img);
+    console.log(img2);
+  }
+  
+
   resetGameState() {
     const [rows, cols] = this.state.grid;
-    const cards = this.shuffle(this.generateCards(rows*cols/2));
+    const cards = this.shuffle(this.generateCards(rows*cols/2, this.state.mode));
     this.setState({
       gameState: 'START_SCREEN',
       cards: cards,
@@ -40,10 +49,8 @@ class App extends React.Component {
     });
   }
   
-  generateCards (cardAmount) {
+  generateCards (cardAmount, mode) {
     const cards = [];
-    //const colors = colorList;
-    //const images = this.state.mode + 'List';
     const colors = [
       "",
       "rebeccapurple",
@@ -57,12 +64,14 @@ class App extends React.Component {
       "olivedrab"
     ];
 
+    console.log(`./images/${mode}/${1}.jpg`);
+
     for (let i = 1; i < cardAmount + 1; i++) {
       let card = {
         isOpen: false,
         isMatched: false,
         color: colors[i],
-        img: '',
+        img: require(`./images/${mode}/${i}.jpg`),
         id: i,
       };
       cards.push(card);
@@ -178,14 +187,17 @@ class App extends React.Component {
   }
 
   handleModeChange(mode) {
+    const [rows, cols] = this.state.grid;
+    const cards = this.shuffle(this.generateCards(rows*cols/2, mode));
     this.setState({
-      mode: mode
+      mode: mode,
+      cards: cards
     });
   }
 
   handleGridChange(gridType) {
     const [rows, cols] = gridType.split('x');
-    const cards = this.shuffle(this.generateCards(rows*cols/2));
+    const cards = this.shuffle(this.generateCards(rows*cols/2, this.state.mode));
     this.setState({
       grid: [rows, cols],
       cards: cards
