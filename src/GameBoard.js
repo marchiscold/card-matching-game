@@ -3,8 +3,9 @@ import Card from './Card';
 import MatchedCards from './MatchedCards';
 import Timer from './Timer';
 import classnames from 'classnames';
+import Tries from './Tries';
 
-function GameBoard({ cards, grid, timer, onCardClick, fadeout }) {
+function GameBoard({ tries, cards, grid, timer, onCardClick, fadeout }) {
   const rows = grid[0];
   const cardList = cards.map((card, index) => {
     return <Card key={index} 
@@ -28,6 +29,7 @@ function GameBoard({ cards, grid, timer, onCardClick, fadeout }) {
     <div className={classname}>
       <div className="info">
         <MatchedCards cards={cards} total={cards.length} />
+        <Tries tries={tries} />
         <Timer time={timer} />
       </div>
       <div className="board">{cardRows}</div>

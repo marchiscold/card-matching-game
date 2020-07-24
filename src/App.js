@@ -23,7 +23,7 @@ class App extends React.Component {
       isBlocked: false,
       mode: MODE.BUGS,
       grid: GRID['2X4'],
-      score: {},
+      tries: 0,
       startScreenFadeOut: false,
       startScreenFadeIn: false,
       gameScreenFadeOut: false,
@@ -46,6 +46,7 @@ class App extends React.Component {
       gameState: SCREEN.START,
       cards: cards,
       timer: 0,
+      tries: 0,
       isBlocked: false,
     });
   }
@@ -101,6 +102,12 @@ class App extends React.Component {
     }
 
     let cards = JSON.parse(JSON.stringify(this.state.cards));
+    if (!cards[cardNum].isOpen) {
+      this.setState((state) => ({
+        tries: state.tries + 1
+      }));
+    }
+
     cards[cardNum].isOpen = true;
     let openCards = cards.filter(card => card.isOpen && !card.isMatched);
 
@@ -224,6 +231,7 @@ class App extends React.Component {
       case SCREEN.GAME:
         screen = (
           <GameBoard
+            tries={this.state.tries}
             cards={this.state.cards}
             grid={this.state.grid}
             timer={this.state.timer}
@@ -235,6 +243,9 @@ class App extends React.Component {
       case SCREEN.GAME_OVER:
         screen = (
           <GameEnd
+            grid={this.state.grid}
+            time={this.state.timer}
+            tries={this.state.tries}
             onStartOver={this.handleStartOver}
             fadeout={this.state.endScreenFadeOut}
           />
