@@ -3,6 +3,7 @@ import './App.css';
 import GameBoard from './GameBoard';
 import GameStart from './GameStart';
 import GameEnd from './GameEnd';
+import {MODE, GRID, SCREEN} from './constants';
 
 class App extends React.Component {
   constructor (props) {
@@ -13,16 +14,16 @@ class App extends React.Component {
     this.handleModeChange = this.handleModeChange.bind(this);
     this.handleGridChange = this.handleGridChange.bind(this);
 
-    const [rows, cols] = [2, 4];
-    const mode = 'bugs';
-    const cards = this.shuffle(this.generateCards(rows*cols/2, mode));
+    const [rows, cols] = GRID['2X4'];
+    const cards = this.shuffle(this.generateCards(rows*cols/2, MODE.BUGS));
     this.state = {
-      gameState: 'START_SCREEN',
+      gameState: SCREEN.START,
       cards: cards,
       timer: 0,
       isBlocked: false,
-      mode: 'bugs',
-      grid: [rows, cols],
+      mode: MODE.BUGS,
+      grid: GRID['2X4'],
+      score: {},
       startScreenFadeOut: false,
       startScreenFadeIn: false,
       gameScreenFadeOut: false,
@@ -42,7 +43,7 @@ class App extends React.Component {
     const [rows, cols] = this.state.grid;
     const cards = this.shuffle(this.generateCards(rows*cols/2, this.state.mode));
     this.setState({
-      gameState: 'START_SCREEN',
+      gameState: SCREEN.START,
       cards: cards,
       timer: 0,
       isBlocked: false,
@@ -103,7 +104,7 @@ class App extends React.Component {
     cards[cardNum].isOpen = true;
     let openCards = cards.filter(card => card.isOpen && !card.isMatched);
 
-    if (openCards.length == 2 && openCards[0].color == openCards[1].color) {
+    if (openCards.length == 2 && openCards[0].id == -openCards[1].id) {
       openCards.forEach((card) => {
         card.isMatched = true;
       })
@@ -133,7 +134,7 @@ class App extends React.Component {
       }, 800);
       setTimeout(() => {
         this.setState({
-          gameState: 'GAME_OVER_SCREEN',
+          gameState: SCREEN.GAME_OVER,
           gameScreenFadeOut: false
         });
       }, 1000);
@@ -163,7 +164,7 @@ class App extends React.Component {
     });
     setTimeout(() => {
       this.setState({
-        gameState: 'GAME_SCREEN',
+        gameState: SCREEN.GAME,
         startScreenFadeOut: false
       });
     }, 200)
@@ -207,7 +208,7 @@ class App extends React.Component {
   render() {
     let screen;
     switch(this.state.gameState) {
-      case 'START_SCREEN':
+      case SCREEN.START:
         screen = (
           <GameStart
             onGameStart={this.handleGameStart}
@@ -220,7 +221,7 @@ class App extends React.Component {
           />
         );
         break;
-      case 'GAME_SCREEN':
+      case SCREEN.GAME:
         screen = (
           <GameBoard
             cards={this.state.cards}
@@ -231,7 +232,7 @@ class App extends React.Component {
           />
         );
         break;
-      case 'GAME_OVER_SCREEN':
+      case SCREEN.GAME_OVER:
         screen = (
           <GameEnd
             onStartOver={this.handleStartOver}

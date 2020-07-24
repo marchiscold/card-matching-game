@@ -106,8 +106,9 @@ body {
 .board__row {
   display: flex;
   justify-content: space-between;
+  align-items: start;
   width: 100%;
-  height: 50%;
+  flex: 1 1 0;
 }
 
 .board__row:not(:last-child) {
@@ -127,6 +128,8 @@ body {
 
 .card__back {
   transform: rotateY(180deg);
+  background-repeat: no-repeat;
+  background-position: center;
   background-size: cover;
 }
 
@@ -135,7 +138,7 @@ body {
   cursor: pointer;
   flex: 1 1 0;
   height: 100%;
-  background-color: #333;
+  background-color: #fff;
   transition: transform 0.3s linear;
   transform-style: preserve-3d;
 }
