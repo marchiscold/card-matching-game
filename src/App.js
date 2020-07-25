@@ -255,6 +255,16 @@ class App extends React.Component {
         screen = <div>error screen</div>
     }
 
+    // screen = (
+    //   <GameEnd
+    //     grid={this.state.grid}
+    //     time={this.state.timer}
+    //     tries={this.state.tries}
+    //     onStartOver={this.handleStartOver}
+    //     fadeout={this.state.endScreenFadeOut}
+    //   />
+    // );
+
     return (
       <div className="wrapper">
         {screen}
