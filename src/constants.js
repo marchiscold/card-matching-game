@@ -9,7 +9,7 @@ export const GRID = {
 }
 
 export const SCREEN = {
-  START: 1,
+  MENU: 1,
   GAME: 2,
   GAME_OVER: 3,
 }

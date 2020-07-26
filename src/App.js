@@ -11,13 +11,14 @@ class App extends React.Component {
     this.handleCardClick = this.handleCardClick.bind(this);
     this.handleGameStart = this.handleGameStart.bind(this);
     this.handleStartOver = this.handleStartOver.bind(this);
+    this.handleMenuReturn = this.handleMenuReturn.bind(this);
     this.handleModeChange = this.handleModeChange.bind(this);
     this.handleGridChange = this.handleGridChange.bind(this);
 
     const [rows, cols] = GRID['2X4'];
     const cards = this.shuffle(this.generateCards(rows*cols/2, MODE.BUGS));
     this.state = {
-      gameState: SCREEN.START,
+      gameState: SCREEN.MENU,
       cards: cards,
       timer: 0,
       isBlocked: false,
@@ -31,19 +32,10 @@ class App extends React.Component {
     };
   }
 
-  componentDidMount() {
-    const img = require('./images/bugs/1.jpg');
-    const img2 = require('./images/bugs/1.jpg');
-    console.log(img);
-    console.log(img2);
-  }
-  
-
   resetGameState() {
     const [rows, cols] = this.state.grid;
     const cards = this.shuffle(this.generateCards(rows*cols/2, this.state.mode));
     this.setState({
-      gameState: SCREEN.START,
       cards: cards,
       timer: 0,
       tries: 0,
@@ -169,6 +161,7 @@ class App extends React.Component {
     this.setState({
       startScreenFadeOut: true
     });
+    
     setTimeout(() => {
       this.setState({
         gameState: SCREEN.GAME,
@@ -185,9 +178,28 @@ class App extends React.Component {
     this.setState({
       endScreenFadeOut: true
     });
+
     setTimeout(() => {
       this.resetGameState();
       this.setState({
+        gameState: SCREEN.GAME,
+        endScreenFadeOut: false,
+      });
+    }, 200);
+
+    this.timerId = setInterval(() => {
+      this.setState((state) => ({timer: state.timer + 1}))
+    }, 1000);
+  }
+
+  handleMenuReturn() {
+    this.setState({
+      endScreenFadeOut: true
+    });
+    setTimeout(() => {
+      this.resetGameState();
+      this.setState({
+        gameState: SCREEN.MENU,
         endScreenFadeOut: false,
         startScreenFadeIn: true
       });
@@ -215,7 +227,7 @@ class App extends React.Component {
   render() {
     let screen;
     switch(this.state.gameState) {
-      case SCREEN.START:
+      case SCREEN.MENU:
         screen = (
           <GameStart
             onGameStart={this.handleGameStart}
@@ -247,6 +259,7 @@ class App extends React.Component {
             time={this.state.timer}
             tries={this.state.tries}
             onStartOver={this.handleStartOver}
+            onMenuReturn={this.handleMenuReturn}
             fadeout={this.state.endScreenFadeOut}
           />
         );

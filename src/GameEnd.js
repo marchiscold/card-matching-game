@@ -2,7 +2,7 @@ import React from 'react';
 import classnames from 'classnames';
 import './GameEnd.css';
 
-function GameEnd({ grid, time, tries, onStartOver, fadeout }) {
+function GameEnd({ grid, time, tries, onStartOver, onMenuReturn, fadeout }) {
   const classname = classnames('end-screen end', {'end-screen--fadeout': fadeout});
   return (
     <div className={classname}>
@@ -29,7 +29,7 @@ function GameEnd({ grid, time, tries, onStartOver, fadeout }) {
         <button className="nav__button end-screen__button" onClick={onStartOver}>
           score
         </button>
-        <button className="nav__button end-screen__button" onClick={onStartOver}>
+        <button className="nav__button end-screen__button" onClick={onMenuReturn}>
           main menu
         </button>
       </div>
