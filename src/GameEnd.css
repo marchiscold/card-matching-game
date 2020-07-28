@@ -14,18 +14,6 @@
   animation: fade-out 0.2s linear forwards;
 }
 
-.end-screen__button {
-  text-transform: uppercase;
-  cursor: pointer;
-  border: none;
-  background-color: #000;
-  color: #fff;
-  font-size: 25px;
-  letter-spacing: 2px;
-  padding: 10px 15px;
-  margin-bottom: 10px;
-}
-
 .end {
   display: flex;
   flex-direction: column;
@@ -66,4 +54,16 @@
   flex-direction: column;
   margin-top: 10px;
   margin-bottom: 20px;
+}
+
+.nav__button {
+  text-transform: uppercase;
+  cursor: pointer;
+  border: none;
+  background-color: #000;
+  color: #fff;
+  font-size: 25px;
+  letter-spacing: 2px;
+  padding: 10px 15px;
+  margin-bottom: 10px;
 }

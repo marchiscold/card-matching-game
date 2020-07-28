@@ -1,6 +1,19 @@
 import React from 'react';
 import classnames from 'classnames';
+import styled from 'styled-components';
 import './GameEnd.css';
+
+const NavButton = styled.button`
+  text-transform: uppercase;
+  cursor: pointer;
+  border: none;
+  background-color: #000;
+  color: #fff;
+  font-size: 25px;
+  letter-spacing: 2px;
+  padding: 10px 15px;
+  margin-bottom: 10px;
+`;
 
 function GameEnd({ grid, time, tries, onStartOver, onMenuReturn, fadeout }) {
   const classname = classnames('end-screen end', {'end-screen--fadeout': fadeout});
@@ -23,15 +36,15 @@ function GameEnd({ grid, time, tries, onStartOver, onMenuReturn, fadeout }) {
         </div>
       </div>
       <div className='end__nav nav'>
-        <button className="nav__button end-screen__button" onClick={onStartOver}>
+        <NavButton onClick={onStartOver}>
           play again
-        </button>
-        <button className="nav__button end-screen__button" onClick={onStartOver}>
+        </NavButton>
+        <NavButton onClick={onStartOver}>
           score
-        </button>
-        <button className="nav__button end-screen__button" onClick={onMenuReturn}>
+        </NavButton>
+        <NavButton onClick={onMenuReturn}>
           main menu
-        </button>
+        </NavButton>
       </div>
     </div>
   );
