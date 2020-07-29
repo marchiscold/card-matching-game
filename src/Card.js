@@ -1,13 +1,37 @@
 import React from 'react';
 import classnames from 'classnames';
+import styled from 'styled-components';
+
+const CardFace = styled.div`
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: none;
+`;
+
+const CardFront = styled(CardFace)`
+  background-color: #333;
+`;
+
+const CardBack = styled(CardFace)`
+  background-color: ${({ card }) =>
+    card.isMatched || card.isOpen ? card.color : ""};
+  background-image: ${({ card }) =>
+    card.isMatched || card.isOpen ? `url(${card.img})` : ""};
+
+  transform: rotateY(180deg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+`;
 
 function Card({ id, card, onClick }) {
-  let classname = classnames({
+  let cardClass = classnames({
     card: true,
     'card--matched': card.isMatched,
     'card--open': card.isOpen
   });
-  
+
   let style = {};
   if (card.isMatched || card.isOpen) {
     style.backgroundColor = card.color;
@@ -15,9 +39,10 @@ function Card({ id, card, onClick }) {
   }
 
   return (
-    <div className={classname} onClick={() => onClick(id)}>
-      <div className="card__front"></div>
-      <div className="card__back" style={style}></div>
+    <div className={cardClass} onClick={() => onClick(id)}>
+      {/* <div className="card__front"></div> */}
+      <CardFront></CardFront>
+      <CardBack card={card}></CardBack>
     </div>
   );
 }
