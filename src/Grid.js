@@ -1,5 +1,6 @@
 import React from 'react';
 import classnames from 'classnames';
+import styles from './GameStart.module.css';
 
 function Grid({ grid, onGridChange }) {
   const gridType = grid.join("x");
@@ -9,8 +10,8 @@ function Grid({ grid, onGridChange }) {
   ];
 
   const gridList = grids.map((grid, index) => {
-    const gridClass = classnames("grid-options__item", {
-      active: grid.isActive,
+    const gridClass = classnames(styles["grid-options__item"], {
+      [styles["active"]]: grid.isActive,
     });
     return (
       <div key={index} className={gridClass} onClick={() => onGridChange(grid.type)}>
@@ -18,9 +19,10 @@ function Grid({ grid, onGridChange }) {
       </div>
     );
   });
-
+  
+  const gridStyle = [styles["start-screen__grid"], styles["grid-options"]].join(" ");
   return (
-    <div className="start-screen__grid grid-options">{gridList}</div>
+    <div className={ gridStyle }>{gridList}</div>
   )
 }
 

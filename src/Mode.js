@@ -1,6 +1,7 @@
 import React from 'react';
 import bugLogo from './images/bug_logo.jpg';
 import fishLogo from './images/fish_logo.jpg';
+import styles from './GameStart.module.css';
 import classnames from 'classnames';
 
 
@@ -21,7 +22,7 @@ function Mode({ activeMode, onModeChange }) {
   ];
 
   const modeList = modes.map((mode) => {
-    const modeClass = classnames("mode__item", { active: mode.isActive });
+    const modeClass = classnames(styles["mode__item"], { [styles["active"]]: mode.isActive });
     return (
       <div
         key={mode.id}
@@ -29,14 +30,14 @@ function Mode({ activeMode, onModeChange }) {
         style={{ backgroundImage: `url(${mode.logo})` }}
         onClick={() => onModeChange(mode.desc)}
       >
-        <div className="mode__overlay"></div>
-        <div className="mode__description">{mode.desc}</div>
+        <div className={styles["mode__overlay"]}></div>
+        <div className={styles["mode__description"]}>{mode.desc}</div>
       </div>
     );
   });
 
   return (
-    <div className="start-screen__mode mode">{modeList}</div>
+    <div className={styles["start-screen__mode"] + ' ' + styles["mode"]}>{modeList}</div>
   )
 }
 

@@ -58,8 +58,6 @@ class App extends React.Component {
       "olivedrab"
     ];
 
-    console.log(`./images/${mode}/${1}.jpg`);
-
     for (let i = 1; i < cardAmount + 1; i++) {
       let card = {
         isOpen: false,
@@ -161,7 +159,7 @@ class App extends React.Component {
     this.setState({
       startScreenFadeOut: true
     });
-    
+
     setTimeout(() => {
       this.setState({
         gameState: SCREEN.GAME,
