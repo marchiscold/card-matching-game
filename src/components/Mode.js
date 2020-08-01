@@ -1,6 +1,6 @@
 import React from 'react';
-import bugLogo from './images/bug_logo.jpg';
-import fishLogo from './images/fish_logo.jpg';
+import bugLogo from '../images/bug_logo.jpg';
+import fishLogo from '../images/fish_logo.jpg';
 import styles from './GameStart.module.css';
 import classnames from 'classnames';
 

@@ -1,9 +1,9 @@
 import React from 'react';
 import './App.css';
-import GameBoard from './GameBoard';
-import GameStart from './GameStart';
-import GameEnd from './GameEnd';
-import {MODE, GRID, SCREEN} from './constants';
+import GameBoard from './components/GameBoard';
+import GameStart from './components/GameStart';
+import GameEnd from './components/GameEnd';
+import {MODE, GRID, SCREEN} from './components/constants';
 
 class App extends React.Component {
   constructor (props) {
@@ -265,16 +265,6 @@ class App extends React.Component {
       default: 
         screen = <div>error screen</div>
     }
-
-    // screen = (
-    //   <GameEnd
-    //     grid={this.state.grid}
-    //     time={this.state.timer}
-    //     tries={this.state.tries}
-    //     onStartOver={this.handleStartOver}
-    //     fadeout={this.state.endScreenFadeOut}
-    //   />
-    // );
 
     return (
       <div className="wrapper">
