@@ -1,5 +1,5 @@
 import React from 'react';
-import Card from './Card';
+import Card from './Card/Card';
 import MatchedCards from './MatchedCards';
 import Timer from './Timer';
 import classnames from 'classnames';
