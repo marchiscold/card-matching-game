@@ -1,12 +1,12 @@
 import React from 'react';
 import classnames from 'classnames';
-import styled from './Card.module.css';
+import styles from './Card.module.css';
 
 function Card({ id, card, onClick }) {
   let cardClass = classnames({
-    [styled['card']]: true,
-    [styled['card--matched']]: card.isMatched,
-    [styled['card--open']]: card.isOpen
+    [styles['card']]: true,
+    [styles['card--matched']]: card.isMatched,
+    [styles['card--open']]: card.isOpen
   });
 
   let frontStyle = {};
@@ -17,8 +17,8 @@ function Card({ id, card, onClick }) {
 
   return (
     <div className={cardClass} onClick={() => onClick(id)}>
-      <div className={styled['card__inner--front'] + ' ' + styled['card__inner']}></div>
-      <div className={styled['card__inner--back'] + ' ' + styled['card__inner']} card={card} style={frontStyle}></div>
+      <div className={styles['card__inner--front'] + ' ' + styles['card__inner']}></div>
+      <div className={styles['card__inner--back'] + ' ' + styles['card__inner']} card={card} style={frontStyle}></div>
     </div>
   );
 }
