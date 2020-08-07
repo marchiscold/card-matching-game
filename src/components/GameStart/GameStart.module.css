@@ -1,0 +1,57 @@
+.start-screen {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #fff;
+  padding: 20px 10px;
+  transition: opacity 0.2s linear;
+  overflow: auto;
+}
+
+.start-screen--fadeout {
+  opacity: 0;
+}
+
+.start-screen--fadein {
+  animation: fade-in 0.2s linear;
+}
+
+.start-screen__button {
+  text-transform: uppercase;
+  cursor: pointer;
+  border: none;
+  background-color: #000;
+  color: #fff;
+  font-size: 25px;
+  letter-spacing: 2px;
+  padding: 10px 15px;
+  margin-bottom: 50px;
+  margin-top: 15px;
+}
+
+.start-screen__name {
+  font-size: 45px;
+  margin-top: 15px;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fade-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}

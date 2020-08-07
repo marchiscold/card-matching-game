@@ -1,9 +1,9 @@
 import React from 'react';
 import Card from '../Card/Card';
-import MatchedCards from '../MatchedCards';
-import Timer from '../Timer';
+import MatchedCards from '../MatchedCards/MatchedCards';
+import Timer from '../Timer/Timer';
 import classnames from 'classnames';
-import Tries from '../Tries';
+import Tries from '../Tries/Tries';
 import styles from './GameBoard.module.css';
 
 function GameBoard({ tries, cards, grid, timer, onCardClick, fadeout }) {

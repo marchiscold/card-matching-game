@@ -1,7 +1,7 @@
 import React from 'react';
-import bugLogo from '../images/bug_logo.jpg';
-import fishLogo from '../images/fish_logo.jpg';
-import styles from './GameStart.module.css';
+import bugLogo from '../../images/bug_logo.jpg';
+import fishLogo from '../../images/fish_logo.jpg';
+import styles from './Mode.module.css';
 import classnames from 'classnames';
 
 
@@ -37,7 +37,7 @@ function Mode({ activeMode, onModeChange }) {
   });
 
   return (
-    <div className={styles["start-screen__mode"] + ' ' + styles["mode"]}>{modeList}</div>
+    <div className={styles["mode"]}>{modeList}</div>
   )
 }
 

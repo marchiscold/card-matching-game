@@ -1,0 +1,24 @@
+.grid-options {
+  display: flex;
+  margin: 10px 0px;
+}
+
+.grid-options__item {
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60px;
+  width: 120px;
+  border: 1px solid #000;
+  font-size: 25px;
+}
+
+.grid-options__item:first-child {
+  margin-right: 30px;
+}
+
+.grid-options__item.active {
+  border: 2px solid #000;
+  font-weight: 700;
+}
