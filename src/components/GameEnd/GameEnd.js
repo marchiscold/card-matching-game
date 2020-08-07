@@ -25,7 +25,7 @@ function GameEnd({ grid, time, tries, onStartOver, onMenuReturn, fadeout }) {
           </div>
         </div>
       </div>
-      <div className={styles['end__nav nav']}>
+      <div className={styles['end__nav'] + ' ' + styles['nav']}>
         <div className={styles['nav__button']} onClick={onStartOver}>
           play again
         </div>

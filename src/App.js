@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
-import GameBoard from './components/GameBoard';
-import GameStart from './components/GameStart';
+import GameBoard from './components/GameBoard/GameBoard';
+import GameStart from './components/GameStart/GameStart';
 import GameEnd from './components/GameEnd/GameEnd';
 import {MODE, GRID, SCREEN} from './components/constants';
 
