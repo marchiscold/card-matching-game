@@ -1,9 +1,7 @@
 import React from 'react';
 import Card from '../Card/Card';
-import MatchedCards from '../MatchedCards/MatchedCards';
-import Timer from '../Timer/Timer';
+import InfoPanel from './InfoPanel/InfoPanel';
 import classnames from 'classnames';
-import Tries from '../Tries/Tries';
 import styles from './GameBoard.module.css';
 
 function GameBoard({ tries, cards, grid, timer, onCardClick, fadeout }) {
@@ -31,11 +29,7 @@ function GameBoard({ tries, cards, grid, timer, onCardClick, fadeout }) {
   });
   return (
     <div className={gameScreenClass}>
-      <div className={styles['info']}>
-        <MatchedCards cards={cards} total={cards.length} />
-        <Tries tries={tries} />
-        <Timer time={timer} />
-      </div>
+      <InfoPanel cards={cards} tries={tries} timer={timer}/>
       <div className={styles['board']}>{cardRows}</div>
     </div>
   );
