@@ -1,5 +1,5 @@
 import React from 'react';
-import Card from '../Card/Card';
+import Card from './CardPanel/Card/Card';
 import InfoPanel from './InfoPanel/InfoPanel';
 import classnames from 'classnames';
 import styles from './GameBoard.module.css';
