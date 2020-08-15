@@ -1,14 +1,3 @@
-.info {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: #888;
-  height: 80px;
-  padding: 10px 15px;
-  border-radius: 2px 2px 0px 0px;
-  font-size: 25px;
-}
-
 .board {
   display: flex;
   flex-direction: column;
