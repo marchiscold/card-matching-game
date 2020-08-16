@@ -1,6 +1,6 @@
 import React from 'react';
 import Card from './Card/Card';
-import styles from '../GameBoard.module.css';
+import styles from './CardPanel.module.css';
 
 function CardPanel({ cards, grid, onCardClick }) {
   const cardList = cards.map((card, index) => {
