@@ -1,0 +1,45 @@
+.end__score {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  flex: 1 1 auto;
+  width: 100%;
+}
+
+.score {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  max-height: 250px;
+  height: 100%;
+  width: 100%;
+}
+
+.score__item {
+  display: flex;
+  justify-content: space-between;
+  max-width: 200px;
+  width: 100%;
+  font-size: 25px;
+  margin: 10px 0px;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fade-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}

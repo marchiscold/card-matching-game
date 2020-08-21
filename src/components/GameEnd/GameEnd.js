@@ -1,30 +1,17 @@
 import React from 'react';
 import classnames from 'classnames';
 import styles from './GameEnd.module.css';
+import EndScore from './EndScore/EndScore';
 
 function GameEnd({ grid, time, tries, onStartOver, onMenuReturn, fadeout }) {
   const classname = classnames({
     [styles['end-screen']]: true,
     [styles['end']]: true, 
     [styles['end-screen--fadeout']]: fadeout});
+
   return (
     <div className={classname}>
-      <div className={styles['end__score']}>
-        <div className={styles['score']}>
-          <div className={styles['score__item']}>
-            <div className={styles['end__desc']}>Mode:</div>
-            <div className={styles['end__value']}>{grid.join('x')}</div>
-          </div>
-          <div className={styles['score__item']}>
-            <div className={styles['end__desc']}>Tries:</div>
-            <div className={styles['end__value']}>{tries}</div>
-          </div>
-          <div className={styles['score__item']}>
-            <div className={styles['end__desc']}>Time:</div>
-            <div className={styles['end__value']}>{time}s</div>
-          </div>
-        </div>
-      </div>
+      <EndScore grid={grid} time={time} tries={tries}/>
       <div className={styles['end__nav'] + ' ' + styles['nav']}>
         <div className={styles['nav__button']} onClick={onStartOver}>
           play again
