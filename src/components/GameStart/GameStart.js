@@ -1,8 +1,8 @@
 import React from 'react';
 import classnames from 'classnames';
 import styles from './GameStart.module.css';
-import Grid from '../Grid/Grid';
-import Mode from '../Mode/Mode';
+import Grid from './Grid/Grid';
+import Mode from './Mode/Mode';
 
 function GameStart({
   onGameStart,
