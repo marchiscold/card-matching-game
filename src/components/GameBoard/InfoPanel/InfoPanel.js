@@ -1,8 +1,8 @@
 import React from 'react';
 import styles from './InfoPanel.module.css';
-import MatchedCards from '../../MatchedCards/MatchedCards';
-import Tries from '../../Tries/Tries';
-import Timer from '../../Timer/Timer';
+import MatchedCards from '../MatchedCards/MatchedCards';
+import Tries from '../Tries/Tries';
+import Timer from '../Timer/Timer';
 
 function InfoPanel({ cards, tries, timer }) {
   return (
